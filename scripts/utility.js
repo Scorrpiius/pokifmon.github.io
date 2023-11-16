@@ -105,7 +105,7 @@ function executeDBPediaRequest(request, resultsHandler) {
     \n
      `
  
-  var url = "http://dbpedia.org/sparql?query="   + encodeURIComponent(prefixes + request) + "&format=json";
+  var url = "https://dbpedia.org/sparql?query="   + encodeURIComponent(prefixes + request) + "&format=json";
   loadingProfile();
   window.xmlhttp = new XMLHttpRequest();
   window.xmlhttp.onreadystatechange = function () {
