@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <link rel="icon" type="image/svg+xml" href="img/icones/Logo-Pokifmon-ico.png" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,900" rel="stylesheet"
+    type="text/css">
+  <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet" />
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/footer.css">
+  <link rel="stylesheet" href="style/header.css">
+  <link rel="stylesheet" href="style/pokecards.css">
+  <link rel="stylesheet" href="style/autocompletion.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="scripts/init.js"></script>
+  <script src="scripts/requests.js"></script>
+  <script src="scripts/display.js"></script>
+  <script src="scripts/utility.js"></script>
+  <script src="scripts/search.js"></script>
+  <script src="scripts/pokecards.js"></script>
+  <script src="scripts/autocompletion.js"></script>
+  <title>PokIFmon</title>
+
+</head>
+
+<body>
+  <header>
+    <div>
+      <a href="index.html" class="logo" alt='Retourner au menu'>
+        <img src="img/icones/Logo-Pokifmon.png" alt="Logo Pokémon">
+      </a>
+      <p>Le moteur de recherche des Pokémon</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li id="generation-select"><a href="#">Générations</a></li>
+        <li id="video-game"><a href="#">Jeux Vidéos </a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <br />
+
+  <div class="main">
+
+    <!-- Barre de recherche par NOM -->
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback">
+        <i class="gg-search"></i>
+      </span>
+      <div class="autocomplete">
+        <input id="requete-nom" type="text" class="form-control" placeholder="Rechercher par nom..." 
+          oninput="searchByName()">
+      </div>
+      <br />
+    </div>
+
+    <!-- Barre de recherche par POKEDEX ID -->
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback">
+        <i class="gg-search"></i>
+      </span>
+      <input id="requete-pokedexid" type="text" class="form-control" placeholder="Rechercher par n° de pokédex..."
+        oninput="searchByPokedexID(this)">
+      <br />
+    </div>
+
+    <div class="type-contour">
+      <table>
+        <tr>
+          <td>
+            <label for="acier">
+              <input type="radio" id="acier" name="types" cols="1">
+              <img src='img/types/acier.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="combat">
+              <input type="radio" id="combat" name="types" cols="1">
+              <img src='img/types/combat.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="dragon">
+              <input type="radio" id="dragon" name="types" cols="1">
+              <img src='img/types/dragon.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="eau">
+              <input type="radio" id="eau" name="types" cols="1">
+              <img src='img/types/eau.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="électrik">
+              <input type="radio" id="électrik" name="types" cols="1">
+              <img src='img/types/électrik.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="fée">
+              <input type="radio" id="fée" name="types" cols="1">
+              <img src='img/types/fée.png' height="16px">
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="feu">
+              <input type="radio" id="feu" name="types" cols="1">
+              <img src='img/types/feu.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="glace">
+              <input type="radio" id="glace" name="types" cols="1">
+              <img src='img/types/glace.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="insecte">
+              <input type="radio" id="insecte" name="types" cols="1">
+              <img src='img/types/insecte.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="normal">
+              <input type="radio" id="normal" name="types" cols="1">
+              <img src='img/types/normal.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="plante">
+              <input type="radio" id="plante" name="types" cols="1">
+              <img src='img/types/plante.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="poison">
+              <input type="radio" id="poison" name="types" cols="1">
+              <img src='img/types/poison.png' height="16px">
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="psy">
+              <input type="radio" id="psy" name="types" cols="1">
+              <img src='img/types/psy.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="roche">
+              <input type="radio" id="roche" name="types" cols="1">
+              <img src='img/types/roche.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="sol">
+              <input type="radio" id="sol" name="types" cols="1">
+              <img src='img/types/sol.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="spectre">
+              <input type="radio" id="spectre" name="types" cols="1">
+              <img src='img/types/spectre.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="ténèbres">
+              <input type="radio" id="ténèbres" name="types" cols="1">
+              <img src='img/types/ténèbres.png' height="16px">
+            </label>
+          </td>
+          <td>
+            <label for="vol">
+              <input type="radio" id="vol" name="types" cols="1">
+              <img src='img/types/vol.png' height="16px">
+            </label>
+          </td>
+        </tr>
+      </table>
+
+      <div class="center">
+
+        <button class="center" id="rechercher-type" onClick="searchType()">
+          <span class="icon-text">
+            <span class="fa fa-search form-control-feedback">
+              <i class="no-margin gg-search"></i>
+            </span>
+            <span>Rechercher par type</span>
+          </span>
+        </button>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div id="loader" class="loader"></div>
+
+  <div id="results-number" class="center"></div>
+
+  <div id="container-pokecards" class="container-pokecards">
+  </div>
+
+  <br />
+
+</body>
+
+</html>

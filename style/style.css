@@ -1,0 +1,215 @@
+html {
+  height: 100%;
+  width: 100%;
+  font-family: 'Source Sans Pro';
+  scroll-behavior: smooth;
+  /* scrollbar-gutter: stable; */
+}
+
+#resultats {
+  width: 100%;
+  text-align: center;
+  border: 0;
+}
+
+
+
+table,
+tr,
+td,
+th {
+  padding: 10px;
+  margin: auto;
+
+}
+
+th {
+  background-color: #2583d4;
+  color: white;
+}
+
+/* Styles pour englober la barre de recherche */
+
+.main {
+  width: 60%;
+  margin: 25px auto;
+}
+
+/* Bootstrap 4 text input avec loupe*/
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+/* Icone loupe */
+.gg-search {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 16px;
+  height: 16px;
+  border: 2px solid;
+  border-radius: 100%;
+  margin-left: 10px;
+  margin-top: 10px;
+  transition: color 0.4s ease;
+}
+
+.gg-search::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  border-radius: 3px;
+  width: 2px;
+  height: 8px;
+  background: currentColor;
+  transform: rotate(-45deg);
+  top: 10px;
+  left: 12px
+}
+
+button {
+  width: 100%;
+}
+
+/* Chargement */
+.loader {
+  border: 8px solid rgba(222, 222, 222, 0.9);
+  border-radius: 50%;
+  border-top: 8px solid rgba(52, 152, 219, 0.9);
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 0.69s linear infinite;
+  /* Safari */
+  animation: spin 0.69s linear infinite;
+  position: fixed;
+  /* Position fixe */
+  top: 50%;
+  /* Position verticale au milieu */
+  left: 50%;
+  /* Position horizontale au milieu */
+  margin-top: -30px;
+  /* moitié de la hauteur */
+  margin-left: -30px;
+  /* moitié de la largeur */
+  z-index: 9999;
+  /* Valeur élevée pour être au-dessus de tout le reste */
+  display: none;
+}
+
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#requete-nom::placeholder,
+#requete-type::placeholder,
+#requete-pokedexid::placeholder {
+  color: #999;
+  transition: color 0.4s ease;
+}
+
+#requete-nom:focus::placeholder,
+#requete-type:focus::placeholder,
+#requete-pokedexid:focus::placeholder {
+  color: #555;
+}
+
+.form-group.has-search:focus-within .gg-search {
+  color: #555;
+  /* Couleur de la loupe lorsque input focus */
+}
+
+.no-results {
+  color: #999;
+  font-size: 1.2rem;
+}
+
+span.fa.fa-search.form-control-feedback {
+  margin-bottom: 2px;
+}
+
+button#rechercher-type {
+  border-radius: 100px;
+  color: white;
+  background-color: #2583d4;
+  border: none;
+  width: 30%;
+  height: 32px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.2);
+  transition: all ease 0.3s;
+}
+
+button#rechercher-type:hover {
+  background-color: #2270b9;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  /* Aligne les éléments sur l'axe vertical */
+}
+
+.icon-text .fa,
+.icon-text i {
+  margin-right: 5px;
+  /* Marge à droite pour séparer l'icône du texte */
+}
+
+
+.type-contour {
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Source Sans Pro';
+  align-items: center;
+}
+
+td img {
+  margin-bottom: 5px;
+}
+
+/* Exemple menu déroulant 
+/* https://codepen.io/andornagy/pen/ALbdbJ */

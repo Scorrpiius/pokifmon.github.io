@@ -1,0 +1,240 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Source Sans Pro';
+}
+
+.container-pokecards {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px 25px;
+  margin: 0;
+  /*padding: 100px 50px;*/
+  padding-top: 0px;
+}
+
+.container-pokecards .pokecard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 180px;
+  height: 275px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+  transition: 0.5s;
+}
+
+.container-pokecards .pokecard .image {
+  position: absolute;
+  top: 20px;
+  width: 165px;
+  height: 150px;
+  border-radius: 12px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.container-pokecards .pokecard .image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container-pokecards .pokecard .content-pokecard {
+  position: absolute;
+  width: 100%;
+  padding: 0 30px;
+  text-align: center;
+  top: 185px;
+  height: 40px;
+  transition: 0.5s;
+  /* border: 2px solid red; */
+}
+
+.container-pokecards .pokecard .content-pokecard h2 {
+  color: rgb(0, 0, 0);
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.container-pokecards .pokecard .content-pokecard p {
+  color: #333;
+  font-size: 1.05em;
+  margin-bottom: 0;
+}
+
+.container-pokecards .pokecard .content-pokecard a {
+  position: relative;
+  top: 15px;
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #33d;
+  color: #ffff;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.container-pokecards .pokecard .content-pokecard .pokecard-types-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0px 5px;
+  font-size: 0.7em;
+}
+
+.container-pokecards .pokecard .content-pokecard img {
+  height: 16px;
+  margin-top: 6px;
+}
+
+p.pokecard-hasMoreThanTwoTypes {
+  position: absolute;
+  top: 250px;
+  color: #000;
+}
+
+.pokecard {
+  transition: all .5s ease-in-out;
+}
+
+.pokecard:hover {
+  transform: scale(1.1);
+}
+
+.no-shadow {
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+}
+
+h2.card-title.results-number {
+  font-weight: 400;
+  color: #999;
+}
+
+#en-tete h2 {
+  min-height: 24px;
+}
+
+#en-tete>.card {
+  /* Vos styles spécifiques pour le div avec la classe "card" */
+  width: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f2f5f7;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  width: 275px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  max-width: 100%;
+  background-color: #FFF;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  border: none !important;
+}
+
+.card-img {
+  padding-bottom: 56.25%;
+  position: relative;
+}
+
+.card-img img {
+  position: absolute;
+  width: 100%;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  line-height: 1.33;
+  font-weight: 700;
+}
+
+.card-title.skeleton {
+  min-height: 20px;
+  border-radius: 4px;
+}
+
+.card-intro {
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}
+
+.card-intro.skeleton {
+  min-height: 45px;
+  border-radius: 4px;
+}
+
+.skeleton {
+  background-color: #ebeeef;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  background-size: 40px 100%;
+  background-repeat: no-repeat;
+  background-position: left -40px top 0;
+  -webkit-animation: shine 1s ease infinite;
+  animation: shine 1s ease infinite;
+}
+
+@-webkit-keyframes shine {
+  to {
+    background-position: right -40px top 0;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: right -40px top 0;
+  }
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px 25px;
+}

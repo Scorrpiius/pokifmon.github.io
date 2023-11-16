@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <link rel="icon" type="image/svg+xml" href="img/icones/Logo-Pokifmon-ico.png" />
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,900" rel="stylesheet"
+          type="text/css">
+        <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet" />
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/footer.css">
+        <link rel="stylesheet" href="style/header.css">
+        <link rel="stylesheet" href="style/pokecards.css">
+        <link rel="stylesheet" href="style/autocompletion.css">
+        <link rel="stylesheet" href="style/profil.css">
+        <link rel="stylesheet" href="style/gameDescription.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+          crossorigin="anonymous"></script>
+        <script src="scripts/init.js"></script>
+        <script src="scripts/requests.js"></script>
+        <script src="scripts/display.js"></script>
+        <script src="scripts/search.js"></script>
+        <script src="scripts/utility.js"></script>
+        <script src="scripts/pokecards.js"></script>
+        <title>PokIFmon</title>
+      
+      </head>
+    
+<body>
+    <header>
+      <div>
+        <a href="index.html" class="logo" alt='Retourner au menu'>
+          <img src="img/icones/Logo-Pokifmon.png" alt="Logo Pokémon">
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li id="generation-select"><a href="#">Générations</a></li>
+          <li id="video-game"><a href="#">Jeux Vidéos </a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="loader" class="loader"></div>
+
+    <div class="en-tête">
+      <div id="game-name" class="center"></div>
+    </div>
+
+    <div id="header-infos">
+      <div id="game-description"></div>
+
+      <div id="general-infos">
+          <div id="game-release-date"></div>
+          <div id="game-director"></div>
+          <div id="game-designer"></div>
+          <div id="game-console"></div>
+          <div id="game-producer"></div>
+          <div id="game-developer"></div>
+          <div id="game-programmer"></div>
+          <div id="game-type"></div>
+          <div id="game-modes"></div>
+      </div>
+    </div>
+</body>
+</html>

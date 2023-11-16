@@ -1,0 +1,46 @@
+.center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Source Sans Pro';
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+#game-description {
+    grid-area: 2 / 3 / 6 / 4;
+    width: 600px;
+    padding: 16px 16px;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+
+}
+
+#general-infos{
+    grid-area: 6 / 3 / 6 / 4;
+    width: 600px;
+    padding: 16px 16px;
+    margin: 20px;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.en-tete {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    align-items: center;
+}
+
+#header-infos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 20px repeat(3, 100px);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+}
