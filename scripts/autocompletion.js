@@ -146,7 +146,7 @@ function executeAutoCompleteGame(request) {
     \n
      `
 
-  var url = "http://dbpedia.org/sparql?query=" + encodeURIComponent(prefixes + request) + "&format=json";
+  var url = "https://dbpedia.org/sparql?query=" + encodeURIComponent(prefixes + request) + "&format=json";
 
   var resultats = [];
   var temp;
