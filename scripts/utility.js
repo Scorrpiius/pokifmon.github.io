@@ -104,8 +104,12 @@ function executeDBPediaRequest(request, resultsHandler) {
     PREFIX onto: <http://dbpedia.org/ontology/>
     \n
      `
+  if (window.xmlhttp) {
+    console.log("ANNULATION D'UNE REQUETE PAS FINIE");
+    window.xmlhttp.abort();
+  }
  
-  var url = "https://dbpedia.org/sparql?query="   + encodeURIComponent(prefixes + request) + "&format=json";
+  var url = "https://dbpedia.org/snorql?query="   + encodeURIComponent(prefixes + request) + "&format=json";
   loadingProfile();
   window.xmlhttp = new XMLHttpRequest();
   window.xmlhttp.onreadystatechange = function () {
