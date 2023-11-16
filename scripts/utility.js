@@ -109,7 +109,7 @@ function executeDBPediaRequest(request, resultsHandler) {
     window.xmlhttp.abort();
   }
  
-  var url = "https://dbpedia.org/snorql?query="   + encodeURIComponent(prefixes + request) + "&format=json";
+  var url = "https://dbpedia.org/sparqll?query="   + encodeURIComponent(prefixes + request) + "&format=json";
   loadingProfile();
   window.xmlhttp = new XMLHttpRequest();
   window.xmlhttp.onreadystatechange = function () {
