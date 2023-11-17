@@ -21,68 +21,79 @@ function searchByPokedexID(input) {
 
 
 function searchProfile() {
-  console.log("Recherche profil en cours");
+  return new Promise((resolve) => {
+    console.log("Recherche profil en cours");
 
-  var id = getIdParameter();
-  var request = requestPokemonProfile(id);
-  executeWikidataRequest(request, displayResultsProfile);
+    var id = getIdParameter();
+    var request = requestPokemonProfile(id);
+
+    // Passer la fonction resolve comme callback à executeWikidataRequest
+    executeWikidataRequest(request, (results) => {
+      displayResultsProfile(results);
+      resolve(); // Appeler resolve une fois que executeWikidataRequest est terminé
+    });
+  });
 }
 
+
 function searchByGeneration() {
-  console.log("Recherche générations en cours")
+    console.log("Recherche générations en cours")
 
-  var id = getIdParameter();
-  let generation = null
-  switch (id) {
-    case '1':
-      generation = "Generation I";
-      break;
+    var id = getIdParameter();
+    let generation = null
+    switch (id) {
+      case '1':
+        generation = "Generation I";
+        break;
 
-    case '2':
-      generation = "Generation II";
-      break;
+      case '2':
+        generation = "Generation II";
+        break;
 
-    case '3':
-      generation = "Generation III";
-      break;
+      case '3':
+        generation = "Generation III";
+        break;
 
-    case '4':
-      generation = "Generation IV";
-      break;
+      case '4':
+        generation = "Generation IV";
+        break;
 
-    case '5':
-      generation = "Generation V";
-      break;
+      case '5':
+        generation = "Generation V";
+        break;
 
-    case '6':
-      generation = "Generation VI";
-      break;
+      case '6':
+        generation = "Generation VI";
+        break;
 
-    case '7':
-      generation = "Generation VII";
-      break;
+      case '7':
+        generation = "Generation VII";
+        break;
 
-    case '8':
-      generation = "Generation VIII";
-      break;
+      case '8':
+        generation = "Generation VIII";
+        break;
 
-    case '9':
-      generation = "Generation IX";
-      break;
+      case '9':
+        generation = "Generation IX";
+        break;
 
-  }
-  document.getElementById("en-tete").innerHTML = `Pokémon de la ${generation}`
+    }
+    document.getElementById("en-tete").innerHTML = `Pokémon de la ${generation}`
 
-  var request = requestPokemonByGeneration(generation);
-  console.log(request);
-  executeWikidataRequest(request, displayResultsMenu);
+    var request = requestPokemonByGeneration(generation);
+    console.log(request);
+    
+    // Utiliser le callback de executeWikidataRequest pour résoudre la promesse
+    executeWikidataRequest(request, displayResultsMenu);
+
 }
 
 function searchAllGenerations() {
-  console.log("Recherche des générations existantes en cours");
+    console.log("Recherche des générations existantes en cours");
 
-  var request = requestAllGenerations();
-  executeWikidataRequest(request, displayResultsGeneration);
+    var request = requestAllGenerations();
+    executeWikidataRequest(request, displayResultsGeneration);
 }
 
 function searchByName() {
@@ -124,9 +135,9 @@ function searchType() {
 
 }
 
-function searchGameByName(){
+function searchGameByName() {
   console.log("Recherche infos sur le jeu en cours");
-  
+
   var name = getNameParameter();
   name = name.replaceAll(" ", "_");
 
