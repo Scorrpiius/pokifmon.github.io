@@ -13,7 +13,7 @@ function getIdParameter() {
   return id;
 }
 
-function getNameParameter(){
+function getNameParameter() {
   var str = window.location.href;
   var url = new URL(str);
   var name = url.searchParams.get("name");
@@ -104,21 +104,17 @@ function executeDBPediaRequest(request, resultsHandler) {
     PREFIX onto: <http://dbpedia.org/ontology/>
     \n
      `
-  if (window.xmlhttp) {
-    console.log("ANNULATION D'UNE REQUETE PAS FINIE");
-    window.xmlhttp.abort();
-  }
- 
-  var url = "https://dbpedia.org/sparql?query="   + encodeURIComponent(prefixes + request) + "&format=json";
+
+  var url = "https://dbpedia.org/sparql?query=" + encodeURIComponent(prefixes + request) + "&format=json";
   loadingProfile();
   window.xmlhttp = new XMLHttpRequest();
-  window.xmlhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+  window.xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
       var result = JSON.parse(this.responseText);
       resultsHandler(result);
-      window.xmlhttp = null; 
+      window.xmlhttp = null;
       endLoading()
-      }
+    }
   };
   window.xmlhttp.open("GET", url, true);
   window.xmlhttp.send();
