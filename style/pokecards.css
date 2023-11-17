@@ -101,7 +101,6 @@
 p.pokecard-hasMoreThanTwoTypes {
   position: absolute;
   top: 250px;
-  color: #000;
 }
 
 .pokecard {
@@ -114,6 +113,7 @@ p.pokecard-hasMoreThanTwoTypes {
 
 .no-shadow {
   box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+  border: none;
 }
 
 h2.card-title.results-number {
