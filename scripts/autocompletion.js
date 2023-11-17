@@ -10,15 +10,14 @@ function executeAutoCompleteName(request) {
   window.xmlhttp.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       temp = JSON.parse(this.responseText);
-      console.log(temp);
       temp.results.bindings.forEach((r) => {
         if (r.pokemonLabel != undefined) {
           var name = r.pokemonLabel.value;
-          resultats.push(name)
+          resultats.push(name);
         }
       });
-      autocompleteName(document.getElementById("requete-nom"), resultats)
-      window.xmlhttp = null; // on réinitialise l'objet XMLHttpRequest lorsque la requête est finie
+      autocompleteName(document.getElementById("requete-nom"), resultats);
+      window.xmlhttp = null;
     }
   };
   window.xmlhttp.open("GET", url, true);
@@ -27,94 +26,66 @@ function executeAutoCompleteName(request) {
 }
 
 function autocompleteName(inp, arr) {
-  /*the autocomplete function takes two arguments,
-  the text field element and an array of possible autocompleted values:*/
   var currentFocus;
-  /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
     var a, b, i, val = this.value;
-    /*close any already open lists of autocompleted values*/
     closeAllLists();
     if (!val) { return false; }
     currentFocus = -1;
-    /*create a DIV element that will contain the items (values):*/
     a = document.createElement("DIV");
     a.setAttribute("id", this.id + "autocomplete-list");
     a.setAttribute("class", "autocomplete-items");
-    a.style.maxHeight = "270px"; // Ajustez la hauteur maximale selon vos besoins
+    a.style.maxHeight = "270px";
     a.style.overflowY = "auto";
-    /*append the DIV element as a child of the autocomplete container:*/
     this.parentNode.appendChild(a);
-    /*for each item in the array...*/
     for (i = 0; i < arr.length; i++) {
-      /*check if the item starts with the same letters as the text field value:*/
       if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-        /*create a DIV element for each matching element:*/
         b = document.createElement("DIV");
-        /*make the matching letters bold:*/
         b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
         b.innerHTML += arr[i].substr(val.length);
-        /*insert a input field that will hold the current array item's value:*/
         b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-        /*execute a function when someone clicks on the item value (DIV element):*/
         b.addEventListener("click", function(e) {
-          /*insert the value for the autocomplete text field:*/
           inp.value = this.getElementsByTagName("input")[0].value;
           searchByName();
-          /*close the list of autocompleted values,
-          (or any other open lists of autocompleted values:*/
           closeAllLists();
         });
         a.appendChild(b);
       }
     }
   });
-  /*execute a function presses a key on the keyboard:*/
+
   inp.addEventListener("keydown", function(e) {
     var x = document.getElementById(this.id + "autocomplete-list");
     if (x) x = x.getElementsByTagName("div");
     if (e.keyCode == 40) {
-      /*If the arrow DOWN key is pressed,
-      increase the currentFocus variable:*/
       currentFocus++;
-      /*and and make the current item more visible:*/
       addActive(x);
-    } else if (e.keyCode == 38) { //up
-      /*If the arrow UP key is pressed,
-      decrease the currentFocus variable:*/
+    } else if (e.keyCode == 38) {
       currentFocus--;
-      /*and and make the current item more visible:*/
       addActive(x);
     } else if (e.keyCode == 13) {
-      /*If the ENTER key is pressed, prevent the form from being submitted,*/
       e.preventDefault();
       if (currentFocus > -1) {
-        /*and simulate a click on the "active" item:*/
         if (x) x[currentFocus].click();
       }
     }
   });
-  
+
   function addActive(x) {
-    /*a function to classify an item as "active":*/
     if (!x) return false;
-    /*start by removing the "active" class on all items:*/
     removeActive(x);
     if (currentFocus >= x.length) currentFocus = 0;
     if (currentFocus < 0) currentFocus = (x.length - 1);
-    /*add class "autocomplete-active":*/
     x[currentFocus].classList.add("autocomplete-active");
   }
+
   function removeActive(x) {
-    /*a function to remove the "active" class from all autocomplete items:*/
     for (var i = 0; i < x.length; i++) {
       x[i].classList.remove("autocomplete-active");
     }
   }
-  
+
   function closeAllLists(elmnt) {
-    /*close all autocomplete lists in the document,
-    except the one passed as an argument:*/
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
       if (elmnt != x[i] && elmnt != inp) {
@@ -122,8 +93,7 @@ function autocompleteName(inp, arr) {
       }
     }
   }
-  
-  /*execute a function when someone clicks in the document:*/
+
   document.addEventListener("click", function(e) {
     closeAllLists(e.target);
   });
@@ -131,25 +101,11 @@ function autocompleteName(inp, arr) {
 }
 
 function executeAutoCompleteGame(request) {
-
-  var prefixes = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-    PREFIX dc: <http://purl.org/dc/elements/1.1/>
-    PREFIX : <http://dbpedia.org/resource/>
-    PREFIX dbpedia2: <http://dbpedia.org/property/>
-    PREFIX dbpedia: <http://dbpedia.org/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX onto: <http://dbpedia.org/ontology/>
-    \n
-     `
-
-  var url = "https://dbpedia.org/sparql?query=" + encodeURIComponent(prefixes + request) + "&format=json";
+  var url = "https://dbpedia.org/sparql?query=" + encodeURIComponent(request) + "&format=json";
 
   var resultats = [];
   var temp;
+
   window.xmlhttp = new XMLHttpRequest();
   window.xmlhttp.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -157,14 +113,12 @@ function executeAutoCompleteGame(request) {
       temp.results.bindings.forEach((r) => {
         if (r["gameNameFR"] != undefined) {
           var name = [r["gameNameFR"].value, r["gameNameENG"].value];
-          console.log("eeeee")
           console.log(name)
-          resultats.push(name)
+          resultats.push(name);
         }
       });
-      console.log(resultats);
-      autocompleteGame(document.getElementById("requete-nom-jeu"), resultats)
-      window.xmlhttp = null; // on réinitialise l'objet XMLHttpRequest lorsque la requête est finie
+      autocompleteGame(document.getElementById("requete-nom-jeu"), resultats);
+      window.xmlhttp = null;
     }
   };
   window.xmlhttp.open("GET", url, true);
@@ -173,94 +127,67 @@ function executeAutoCompleteGame(request) {
 }
 
 function autocompleteGame(inp, arr) {
-  /*the autocomplete function takes two arguments,
-  the text field element and an array of possible autocompleted values:*/
   var currentFocus;
-  /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
     var a, b, i, val = this.value;
-    /*close any already open lists of autocompleted values*/
     closeAllLists();
     if (!val) { return false; }
     currentFocus = -1;
-    /*create a DIV element that will contain the items (values):*/
-    a = document.createElement("A");
+    a = document.createElement("DIV");
     a.setAttribute("id", this.id + "autocomplete-list");
     a.setAttribute("class", "autocomplete-items");
-    a.style.maxHeight = "270px"; // Ajustez la hauteur maximale selon vos besoins
+    a.style.maxHeight = "270px";
     a.style.overflowY = "auto";
-    /*append the DIV element as a child of the autocomplete container:*/
     this.parentNode.appendChild(a);
-    /*for each item in the array...*/
     for (i = 0; i < arr.length; i++) {
-      /*check if the item starts with the same letters as the text field value:*/
       if (arr[i][0].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-        /*create a DIV element for each matching element:*/
         b = document.createElement("DIV");
-        /*make the matching letters bold:*/
         b.innerHTML = "<strong>" + arr[i][0].substr(0, val.length) + "</strong>";
         b.innerHTML += arr[i][0].substr(val.length);
-        /*insert a input field that will hold the current array item's value:*/
         b.innerHTML += "<input type='hidden' value='" + arr[i][1] + "'>";
-        /*execute a function when someone clicks on the item value (DIV element):*/
         b.addEventListener("click", function(e) {
-          /*insert the value for the autocomplete text field:*/
-          inp.value = this.getElementsByTagName("input")[0].value;  
+          inp.value = this.getElementsByTagName("input")[0].value;
           window.location.href = `jeu.html?name=${inp.value}`
-             /*close the list of autocompleted values,
-          (or any other open lists of autocompleted values:*/
+
           closeAllLists();
         });
         a.appendChild(b);
       }
     }
   });
-  /*execute a function presses a key on the keyboard:*/
+
   inp.addEventListener("keydown", function(e) {
     var x = document.getElementById(this.id + "autocomplete-list");
     if (x) x = x.getElementsByTagName("div");
     if (e.keyCode == 40) {
-      /*If the arrow DOWN key is pressed,
-      increase the currentFocus variable:*/
       currentFocus++;
-      /*and and make the current item more visible:*/
       addActive(x);
-    } else if (e.keyCode == 38) { //up
-      /*If the arrow UP key is pressed,
-      decrease the currentFocus variable:*/
+    } else if (e.keyCode == 38) {
       currentFocus--;
-      /*and and make the current item more visible:*/
       addActive(x);
     } else if (e.keyCode == 13) {
-      /*If the ENTER key is pressed, prevent the form from being submitted,*/
       e.preventDefault();
       if (currentFocus > -1) {
-        /*and simulate a click on the "active" item:*/
         if (x) x[currentFocus].click();
       }
     }
   });
-  
+
   function addActive(x) {
-    /*a function to classify an item as "active":*/
     if (!x) return false;
-    /*start by removing the "active" class on all items:*/
     removeActive(x);
     if (currentFocus >= x.length) currentFocus = 0;
     if (currentFocus < 0) currentFocus = (x.length - 1);
-    /*add class "autocomplete-active":*/
     x[currentFocus].classList.add("autocomplete-active");
   }
+
   function removeActive(x) {
-    /*a function to remove the "active" class from all autocomplete items:*/
     for (var i = 0; i < x.length; i++) {
       x[i].classList.remove("autocomplete-active");
     }
   }
-  
+
   function closeAllLists(elmnt) {
-    /*close all autocomplete lists in the document,
-    except the one passed as an argument:*/
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
       if (elmnt != x[i] && elmnt != inp) {
@@ -268,14 +195,10 @@ function autocompleteGame(inp, arr) {
       }
     }
   }
-  
-  /*execute a function when someone clicks in the document:*/
+
   document.addEventListener("click", function(e) {
     closeAllLists(e.target);
   });
 
 }
 
-
-/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-//autocomplete(document.getElementById("myInput"), listPokemon.results);
