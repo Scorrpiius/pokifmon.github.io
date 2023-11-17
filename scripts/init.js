@@ -1,32 +1,37 @@
 // Constants
 const DELAY_FOR_GENERATION_SEARCH = 1000; // Delay in milliseconds for searching by generation
-
+const requestGame = requestAllGames();
+const requestName = requestPokemonListNames();
 
 // Helper functions for setting up page-specific functionality
 function setupIndexPage() {
   searchAllGenerations();
-  const requestName = requestPokemonListNames();
   executeAutoCompleteName(requestName);
-  const requestGame = requestAllGames();
   executeAutoCompleteGame(requestGame);
   displaySearchBarVideoGame();
 }
 
 function setupListeGenerationPage() {
   searchAllGenerations();
-  setTimeout(searchByGeneration, DELAY_FOR_GENERATION_SEARCH);
+  
+  executeAutoCompleteGame(requestGame);
+  displaySearchBarVideoGame();
 
-
+  setTimeout(searchByGeneration, DELAY_FOR_GENERATION_SEARCH);;
 }
 
 function setup404Page() {
   searchAllGenerations();
+  executeAutoCompleteGame(requestGame);
+  displaySearchBarVideoGame();
 
 }
 
-function setupJeuPage(){
+function setupJeuPage() {
   searchAllGenerations();
   searchGameByName();
+  executeAutoCompleteGame(requestGame);
+  displaySearchBarVideoGame();
 
 }
 
@@ -35,10 +40,17 @@ function setupProfilePage() {
   const id = getIdParameter();
   console.log(id);
   if (id < 1 || id > 1017) window.location.href = "404.html";
-  searchProfile();
+  console.log("recherche profil");
+  searchProfile().then(() => {
+    // La fonction searchProfile a terminé, maintenant appelez searchAllGenerations
+    console.log("recherche profil terminée");
+    searchAllGenerations();
+    executeAutoCompleteGame(requestGame);
+  });
+
   setupNavigationLinks();
   setFlipCardImages();
-  setTimeout(searchAllGenerations, DELAY_FOR_GENERATION_SEARCH);
+  displaySearchBarVideoGame();
 
 }
 
@@ -49,18 +61,18 @@ function setupNavigationLinks() {
 
   var left = document.getElementById("left");
   // Use a helper function to create navigation link HTML
-  left.innerHTML = 
-  createNavigationLinkHTML(idPrecedentInt, "gauche");
+  left.innerHTML =
+    createNavigationLinkHTML(idPrecedentInt, "gauche");
 
-  if(idPrecedentInt <= 0){
+  if (idPrecedentInt <= 0) {
     // make left invisible
     left.style.visibility = "hidden";
   }
-  
+
   document.getElementById("right").innerHTML = createNavigationLinkHTML(idSuivantInt, "droite");
 }
 
-function getSpriteUrl(id){
+function getSpriteUrl(id) {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 }
 
@@ -84,7 +96,7 @@ function createNavigationLinkHTML(id, direction) {
       <img id="pixelized-sprite" src="${spriteUrl}" alt="Pokémon ${direction === "gauche" ? "précédent" : "suivant"}">
     </a>`;
 
-  
+
 }
 
 // Initialization based on the current page
@@ -99,7 +111,7 @@ function init() {
       setupProfilePage();
     } else if (pathname.includes("404.html")) {
       setup404Page();
-    } else if (pathname.includes("jeu.html")){
+    } else if (pathname.includes("jeu.html")) {
       setupJeuPage();
     }
   });
