@@ -1,6 +1,6 @@
-function displayResultGame(data){
+function displayResultGame(data) {
 
-  data.results.bindings.forEach(r =>{
+  data.results.bindings.forEach(r => {
     console.log(r);
     var name = document.getElementById("game-name");
     name.innerHTML = r.name?.value;
@@ -17,8 +17,8 @@ function displayResultGame(data){
     setElementText("game-type", "Genre", r.typeName?.value);
     setElementText("game-director", "Directeur(s)", r.directorName?.value);
   });
-  
-  
+
+
 }
 
 
@@ -36,7 +36,7 @@ function displayResultsGeneration(data) {
   container.innerHTML += form;
 }
 
-function displaySearchBarVideoGame(){
+function displaySearchBarVideoGame() {
   var container = document.getElementById("video-game");
 
   var form = `<div id="game-search-bar" class="form-group has-search"> <span class="fa fa-search form-control-feedback"> <i class="gg-search"></i> </span> <div class="autocomplete"> <input id="requete-nom-jeu" type="text" class="form-control" placeholder="Rechercher par nom..." > </div></div>`;
@@ -47,11 +47,14 @@ function displaySearchBarVideoGame(){
 
 // Affichage les résultats de la recherche dans une grille de "pokecards"
 function displayResultsMenu(data) {
-  var container = document.querySelector(".container-pokecards");
+  var container = document.getElementById("container-pokecards");
   container.innerHTML = "";
+  console.log(container);
+
 
   // Ajouter chaque pokemon dans une card
   data.results.bindings.forEach((r) => {
+    console.log(r);
     var types = r.types.value.split(";");
 
     var typesFiltered = types.filter(function(element) {
@@ -59,7 +62,6 @@ function displayResultsMenu(data) {
     }).map(function(element) {
       return element.replace("Pokémon de type ", "");
     });
-
     addPokeCard(r.pokedexNumber.value, r.pokemonLabel.value, typesFiltered);
   });
 
