@@ -3,7 +3,7 @@ function requestAllGames(){
       {<http://dbpedia.org/resource/Category:Pokémon_video_games> ?property ?hasValue }
       UNION
       {?isValueOf ?property <http://dbpedia.org/resource/Category:Pokémon_video_games>; rdfs:label ?gameNameENG; rdfs:label ?gameNameFR}
-      
+
       FILTER(lang(?gameNameENG)='en')
       FILTER(lang(?gameNameFR)='fr')
       }
@@ -28,11 +28,11 @@ function requestInfosByGame(game){
   (GROUP_CONCAT(DISTINCT ?typeName; SEPARATOR=', ') AS ?typeName)
   WHERE 
   {
-    
+
     VALUES ?input { <http://dbpedia.org/resource/${game}> }
     ?input rdfs:label ?name; onto:releaseDate ?date.
-    
-    
+
+
     #Directeur
     OPTIONAL{
       ?input dbpedia2:director ?director.
@@ -41,27 +41,27 @@ function requestInfosByGame(game){
         FILTER(lang(?directorName)='en')  
       }
     }
-    
+
     #Description
     OPTIONAL{
       ?input onto:abstract ?description.
       FILTER(lang(?description)='fr')
     }
-    
+
     #Console
     OPTIONAL{
       ?input onto:computingPlatform ?platform.
       ?platform rdfs:label ?console.
       FILTER(lang(?console)='fr')
     }
-    
+
     #Type
     OPTIONAL{
       ?input onto:genre ?genre.
       ?genre rdfs:label ?typeName.
       FILTER(lang(?typeName)='en')
     }
-    
+
     #Producer
     OPTIONAL{
       ?input dbpedia2:producer ?producer.
@@ -71,7 +71,7 @@ function requestInfosByGame(game){
       }
       FILTER(xsd:string(?producer))
     }
-    
+
     #Designer
     OPTIONAL{
       ?input dbpedia2:designer ?designer.
@@ -84,14 +84,14 @@ function requestInfosByGame(game){
         FILTER(xsd:string(?designer))
       }
     }
-    
+
     #Modes de jeu
     OPTIONAL{
       ?input dbpedia2:modes ?modes.
       ?modes rdfs:label ?modesName.
       FILTER(lang(?modesName)='fr')
     }
-    
+
     #Developper
     OPTIONAL{
       ?input onto:developer ?developer.
@@ -100,7 +100,7 @@ function requestInfosByGame(game){
         FILTER(lang(?developerName)='en')
       }
     }
-    
+
     #Programmeur
     OPTIONAL{
       ?input dbpedia2:programmer ?programmer.
@@ -112,9 +112,9 @@ function requestInfosByGame(game){
     }
 
     FILTER(lang(?name)='fr') 
-    
+
   } GROUP BY ?name ?description ?date `
-  
+
 }
 
 
