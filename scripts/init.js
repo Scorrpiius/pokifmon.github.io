@@ -13,7 +13,7 @@ function setupIndexPage() {
 
 function setupListeGenerationPage() {
   searchAllGenerations();
-  
+
   executeAutoCompleteGame(requestGame);
   displaySearchBarVideoGame();
 
@@ -42,7 +42,6 @@ function setupProfilePage() {
   if (id < 1 || id > 1017) window.location.href = "404.html";
   console.log("recherche profil");
   searchProfile().then(() => {
-    // La fonction searchProfile a terminé, maintenant appelez searchAllGenerations
     console.log("recherche profil terminée");
     searchAllGenerations();
     executeAutoCompleteGame(requestGame);
@@ -69,6 +68,9 @@ function setupNavigationLinks() {
     left.style.visibility = "hidden";
   }
 
+  var right = document.getElementById("right");
+  if (idSuivantInt >= 1018) right.style.visibility = "hidden";
+
   document.getElementById("right").innerHTML = createNavigationLinkHTML(idSuivantInt, "droite");
 }
 
@@ -85,7 +87,8 @@ function createNavigationLinkHTML(id, direction) {
     "droite": "img/icones/icone-fleche-droite-noir.png"
   };
 
-  return `
+  if (direction == "gauche") {
+    return `
     <a href="profil.html?id=${id}">
       <img src="${directionIcons[direction]}" alt="Flèche ${direction}">
     </a>
@@ -95,6 +98,18 @@ function createNavigationLinkHTML(id, direction) {
     <a href="profil.html?id=${id}">
       <img id="pixelized-sprite" src="${spriteUrl}" alt="Pokémon ${direction === "gauche" ? "précédent" : "suivant"}">
     </a>`;
+  } else {
+    return `
+    <a href="profil.html?id=${id}">
+      <img id="pixelized-sprite" src="${spriteUrl}" alt="Pokémon ${direction === "gauche" ? "précédent" : "suivant"}">
+    </a>
+    <a href="profil.html?id=${id}">
+      <p>Pokémon n°${paddedId}</p>
+    </a>
+    <a href="profil.html?id=${id}">
+      <img src="${directionIcons[direction]}" alt="Flèche ${direction}">
+    </a>`;
+  }
 
 
 }

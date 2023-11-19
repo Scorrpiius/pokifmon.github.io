@@ -104,13 +104,28 @@ function setElementText(selector, label, value, postfix = "") {
 function displayResultsProfile(data) {
   let nom = document.getElementById("nom");
 
+  if (data.results.bindings.length == 0) {
+    document.getElementById("general-info").innerHTML += "Aucune information disponible.";
+    document.getElementById("evolu-suiv").innerHTML += "Aucune information disponible.";
+    document.getElementById("faiblesse-force").remove();
+  }
+
   data.results.bindings.forEach(r => {
     if (r["pokemonLabel"]) {
       nom.innerHTML = r["pokemonLabel"].value;
     }
     setElementText("id", "Pokémon n°", r.pokedexNumber?.value);
-    setElementText("type", "Type(s)", r.types?.value);
-    display_faiblesses_forces(r.types?.value);
+
+    let types = extractTypes((r.types?.value).split(";"));
+    let hasMoreThanThreeTypes = false; 
+    if (types.length > 3) hasMoreThanThreeTypes = true;
+    types = types.map(type => `<img src='img/types/${type}.png' height='16px'></img>`).join(' ');
+    console.log("reazeaze");
+    console.log(types);
+    if (hasMoreThanThreeTypes) setElementText("type", "Type(s)", "<br/>" + types);
+    else setElementText("type", "Type(s)", types);
+    
+    displayStrengthsWeaknesses(r.types?.value);
 
     if (!isNaN(r.taille?.value)) { // verifying if the size is a valid number
       var unit = r.taille?.value >= 10 ? " centimètres" : " mètres";
@@ -130,11 +145,12 @@ function displayResultsProfile(data) {
     setElementText("evolu-suiv", "Evolution suivante", r.suiLab?.value);
 
     if (!hasPrevEvolution && !hasNextEvolution) {
-      document.getElementById("evolu-suiv").innerHTML = "<strong>Pas d'évolution</strong>";
+      document.getElementById("evolu-suiv").innerHTML = "Pas d'évolution.";
     }
 
     setElementText("genre", "Genre", r.genderLabel?.value);
   });
+
 }
 
 function extractTypes(pokemonArray) {
@@ -144,31 +160,31 @@ function extractTypes(pokemonArray) {
   });
 
   // Filtrer les valeurs nulles (cas où le type n'a pas été trouvé)
-  console.log(result.filter(type => type !== null));
+  //console.log(result.filter(type => type !== null));
   return result.filter(type => type !== null);
 }
 
-function display_faiblesses_forces(pokemon_types) {
+function displayStrengthsWeaknesses(pokemon_types) {
   var typesArray = pokemon_types.split(";");
   let contenu_requete = extractTypes(typesArray);
   var matrix = creationMatriceType();
 
-  let faiblesses = requete_faiblesses(matrix, contenu_requete);
-  let forces = requete_forces(matrix, contenu_requete);
+  let faiblesses = requestWeaknesses(matrix, contenu_requete);
+  let forces = requestStrengths(matrix, contenu_requete);
   let resultats_faiblesses = document.getElementById("faiblesses");
   let resultats_forces = document.getElementById("forces");
 
   for (let i = 0; i < faiblesses.length; i++) {
-    const img = "<img src='img/types/";
-    faiblesses[i] = img.concat(faiblesses[i], ".png' height='16px'></img>");
+    faiblesses[i] = `<img src='img/types/${faiblesses[i]}.png' height='16px'></img>`
   }
   for (let i = 0; i < forces.length; i++) {
-    const img = "<img src='img/types/";
-    forces[i] = img.concat(forces[i], ".png' height='16px'></img>");
+    forces[i] = `<img src='img/types/${forces[i]}.png' height='16px'></img>`
   }
 
-  resultats_faiblesses.innerHTML = faiblesses;
-  resultats_forces.innerHTML = forces;
+  console.log(faiblesses);
+
+  resultats_faiblesses.innerHTML = faiblesses.join(' ');
+  resultats_forces.innerHTML = forces.join(' ');
 }
 
 

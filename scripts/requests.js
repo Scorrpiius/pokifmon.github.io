@@ -80,9 +80,8 @@ function requestInfosByGame(game){
         FILTER(lang(?designerName)='en')
       }
       FILTER(lang(?designer)='en')
-      OPTIONAL{
-        FILTER(xsd:string(?designer))
-      }
+      FILTER(xsd:string(?designer))
+      
     }
 
     #Modes de jeu
@@ -232,10 +231,6 @@ function requestPokemonByType(type) {
             ORDER BY (xsd:integer(?pokedexNumber))`
 }
 
-
-
-
-
 function requestPokemonByPokedexID(id) {
   return `SELECT DISTINCT ?pokemon ?pokemonLabel ?pokedexNumber (GROUP_CONCAT(DISTINCT ?typeName; SEPARATOR=';') AS ?types)
   WHERE
@@ -257,9 +252,6 @@ function requestPokemonByPokedexID(id) {
   GROUP BY ?pokemon ?pokemonLabel ?pokedexNumber
   ORDER BY (xsd:integer(?pokedexNumber))`
 }
-
-
-
 
 function requestPokemonProfile(id) {
   return `SELECT DISTINCT  ?pokemonLabel ?pokedexNumber (GROUP_CONCAT(DISTINCT ?typeLabel; SEPARATOR=';') AS ?types) ?taille ?couleurLabel ?masse ?genLabel ?genderLabel (GROUP_CONCAT(DISTINCT ?precedentLabel; SEPARATOR=';') AS ?preLab)
@@ -433,7 +425,7 @@ function requestPokemonProfile(id) {
 
 
 
-function requete_get_id_type(nom_type) {
+function requestGetIdFromType(nom_type) {
   const typeToId = {
     "normal": 0,
     "feu": 1,
@@ -458,7 +450,7 @@ function requete_get_id_type(nom_type) {
   return typeToId.hasOwnProperty(nom_type) ? typeToId[nom_type] : -1;
 }
 
-function requete_get_nom_id(id) {
+function requestGetTypeFromId(id) {
   const idToType = {
     0: "normal",
     1: "feu",
@@ -656,13 +648,13 @@ function creationMatriceType() {
 }
 
 
-function requete_faiblesses(matrix_types, type){
+function requestWeaknesses(matrix_types, type){
 
     //array_type : type(s) du Pokémon qui nous intéresse en id plutôt qu'en texte
     let array_type = [];
     // Parcours du tableau avec une boucle for
     for (let i = 0; i < type.length; i++) {
-      array_type[i] = requete_get_id_type(type[i]);
+      array_type[i] = requestGetIdFromType(type[i]);
     }
 
     //faiblesses : tableau des noms des types contre lequel le Pokémon est faible
@@ -676,7 +668,7 @@ function requete_faiblesses(matrix_types, type){
         result_profil_type[i] = result_profil_type[i] * matrix_types[i][array_type[j]];
       }
       if(result_profil_type[i]>1){
-        faiblesses.push(requete_get_nom_id(i));
+        faiblesses.push(requestGetTypeFromId(i));
       }
     }
 
@@ -686,13 +678,13 @@ function requete_faiblesses(matrix_types, type){
   return faiblesses;
 }
 
-function requete_forces(matrix_types, type){
+function requestStrengths(matrix_types, type){
 
   //array_type : type(s) du Pokémon qui nous intéresse en id plutôt qu'en texte
   let array_type = [];
   // Parcours du tableau avec une boucle for
   for (let i = 0; i < type.length; i++) {
-    array_type[i] = requete_get_id_type(type[i]);
+    array_type[i] = requestGetIdFromType(type[i]);
   }
 
   //forces : tableau des noms des types contre lequel le Pokémon est faible
@@ -706,7 +698,7 @@ function requete_forces(matrix_types, type){
       result_profil_type[i] = result_profil_type[i] * matrix_types[array_type[j]][i];
     }
     if(result_profil_type[i]>1){
-      forces.push(requete_get_nom_id(i));
+      forces.push(requestGetTypeFromId(i));
     }
   }
 
