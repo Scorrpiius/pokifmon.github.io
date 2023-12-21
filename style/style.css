@@ -6,14 +6,6 @@ html {
   /* scrollbar-gutter: stable; */
 }
 
-#resultats {
-  width: 100%;
-  text-align: center;
-  border: 0;
-}
-
-
-
 table,
 tr,
 td,
@@ -34,6 +26,8 @@ th {
   width: 60%;
   margin: 25px auto;
 }
+
+
 
 /* Bootstrap 4 text input avec loupe*/
 
@@ -171,6 +165,16 @@ button#rechercher-type {
   margin-top: 16px;
   box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.2);
   transition: all ease 0.3s;
+}
+
+@media (max-width: 600px){
+  .main {
+    width: 85%;
+  }
+
+  button#rechercher-type{
+    width: 55%;
+  }
 }
 
 button#rechercher-type:hover {

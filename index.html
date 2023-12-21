@@ -3,6 +3,7 @@
 
 <head>
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content="utf-8" http-equiv="encoding">
   <link rel="icon" type="image/svg+xml" href="img/icones/Logo-Pokifmon-ico.png" />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,900" rel="stylesheet"
@@ -72,138 +73,286 @@
       <br />
     </div>
 
+    
     <div class="type-contour">
-      <table>
-        <tr>
-          <td>
-            <label for="acier">
-              <input type="radio" id="acier" name="types" cols="1">
-              <img src='img/types/acier.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="combat">
-              <input type="radio" id="combat" name="types" cols="1">
-              <img src='img/types/combat.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="dragon">
-              <input type="radio" id="dragon" name="types" cols="1">
-              <img src='img/types/dragon.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="eau">
-              <input type="radio" id="eau" name="types" cols="1">
-              <img src='img/types/eau.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="électrik">
-              <input type="radio" id="électrik" name="types" cols="1">
-              <img src='img/types/électrik.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="fée">
-              <input type="radio" id="fée" name="types" cols="1">
-              <img src='img/types/fée.png' height="16px">
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label for="feu">
-              <input type="radio" id="feu" name="types" cols="1">
-              <img src='img/types/feu.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="glace">
-              <input type="radio" id="glace" name="types" cols="1">
-              <img src='img/types/glace.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="insecte">
-              <input type="radio" id="insecte" name="types" cols="1">
-              <img src='img/types/insecte.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="normal">
-              <input type="radio" id="normal" name="types" cols="1">
-              <img src='img/types/normal.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="plante">
-              <input type="radio" id="plante" name="types" cols="1">
-              <img src='img/types/plante.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="poison">
-              <input type="radio" id="poison" name="types" cols="1">
-              <img src='img/types/poison.png' height="16px">
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label for="psy">
-              <input type="radio" id="psy" name="types" cols="1">
-              <img src='img/types/psy.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="roche">
-              <input type="radio" id="roche" name="types" cols="1">
-              <img src='img/types/roche.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="sol">
-              <input type="radio" id="sol" name="types" cols="1">
-              <img src='img/types/sol.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="spectre">
-              <input type="radio" id="spectre" name="types" cols="1">
-              <img src='img/types/spectre.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="ténèbres">
-              <input type="radio" id="ténèbres" name="types" cols="1">
-              <img src='img/types/ténèbres.png' height="16px">
-            </label>
-          </td>
-          <td>
-            <label for="vol">
-              <input type="radio" id="vol" name="types" cols="1">
-              <img src='img/types/vol.png' height="16px">
-            </label>
-          </td>
-        </tr>
-      </table>
-
-      <div class="center">
-
-        <button class="center" id="rechercher-type" onClick="searchType()">
-          <span class="icon-text">
-            <span class="fa fa-search form-control-feedback">
-              <i class="no-margin gg-search"></i>
-            </span>
-            <span>Rechercher par type</span>
-          </span>
-        </button>
-
-
-      </div>
+      
     </div>
+    
+    <script>
+        var w = window.innerWidth;
+        console.log(w);
+        let typeSearch = document.getElementsByClassName("type-contour");
+        if (w > 600){
+          typeSearch[0].innerHTML = `<table>
+              <tr>
+                <td>
+                  <label for="acier">
+                    <input type="radio" id="acier" name="types" cols="1">
+                    <img src='img/types/acier.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="combat">
+                    <input type="radio" id="combat" name="types" cols="1">
+                    <img src='img/types/combat.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="dragon">
+                    <input type="radio" id="dragon" name="types" cols="1">
+                    <img src='img/types/dragon.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="eau">
+                    <input type="radio" id="eau" name="types" cols="1">
+                    <img src='img/types/eau.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="électrik">
+                    <input type="radio" id="électrik" name="types" cols="1">
+                    <img src='img/types/électrik.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="fée">
+                    <input type="radio" id="fée" name="types" cols="1">
+                    <img src='img/types/fée.png' height="16px">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="feu">
+                    <input type="radio" id="feu" name="types" cols="1">
+                    <img src='img/types/feu.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="glace">
+                    <input type="radio" id="glace" name="types" cols="1">
+                    <img src='img/types/glace.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="insecte">
+                    <input type="radio" id="insecte" name="types" cols="1">
+                    <img src='img/types/insecte.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="normal">
+                    <input type="radio" id="normal" name="types" cols="1">
+                    <img src='img/types/normal.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="plante">
+                    <input type="radio" id="plante" name="types" cols="1">
+                    <img src='img/types/plante.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="poison">
+                    <input type="radio" id="poison" name="types" cols="1">
+                    <img src='img/types/poison.png' height="16px">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="psy">
+                    <input type="radio" id="psy" name="types" cols="1">
+                    <img src='img/types/psy.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="roche">
+                    <input type="radio" id="roche" name="types" cols="1">
+                    <img src='img/types/roche.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="sol">
+                    <input type="radio" id="sol" name="types" cols="1">
+                    <img src='img/types/sol.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="spectre">
+                    <input type="radio" id="spectre" name="types" cols="1">
+                    <img src='img/types/spectre.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="ténèbres">
+                    <input type="radio" id="ténèbres" name="types" cols="1">
+                    <img src='img/types/ténèbres.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="vol">
+                    <input type="radio" id="vol" name="types" cols="1">
+                    <img src='img/types/vol.png' height="16px">
+                  </label>
+                </td>
+              </tr>
+            </table>
+
+            <div class="center">
+
+              <button class="center" id="rechercher-type" onClick="searchType()">
+                <span class="icon-text">
+                  <span class="fa fa-search form-control-feedback">
+                    <i class="no-margin gg-search"></i>
+                  </span>
+                  <span>Rechercher par type</span>
+                </span>
+              </button>
+
+
+            </div>`
+
+        } else {
+          typeSearch[0].innerHTML = `<table>
+              <tr>
+                <td>
+                  <label for="acier">
+                    <input type="radio" id="acier" name="types" cols="1">
+                    <img src='img/types/acier.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="combat">
+                    <input type="radio" id="combat" name="types" cols="1">
+                    <img src='img/types/combat.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="dragon">
+                    <input type="radio" id="dragon" name="types" cols="1">
+                    <img src='img/types/dragon.png' height="16px">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="eau">
+                    <input type="radio" id="eau" name="types" cols="1">
+                    <img src='img/types/eau.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="électrik">
+                    <input type="radio" id="électrik" name="types" cols="1">
+                    <img src='img/types/électrik.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="fée">
+                    <input type="radio" id="fée" name="types" cols="1">
+                    <img src='img/types/fée.png' height="16px">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="feu">
+                    <input type="radio" id="feu" name="types" cols="1">
+                    <img src='img/types/feu.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="glace">
+                    <input type="radio" id="glace" name="types" cols="1">
+                    <img src='img/types/glace.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="insecte">
+                    <input type="radio" id="insecte" name="types" cols="1">
+                    <img src='img/types/insecte.png' height="16px">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="normal">
+                    <input type="radio" id="normal" name="types" cols="1">
+                    <img src='img/types/normal.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="plante">
+                    <input type="radio" id="plante" name="types" cols="1">
+                    <img src='img/types/plante.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="poison">
+                    <input type="radio" id="poison" name="types" cols="1">
+                    <img src='img/types/poison.png' height="16px">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="psy">
+                    <input type="radio" id="psy" name="types" cols="1">
+                    <img src='img/types/psy.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="roche">
+                    <input type="radio" id="roche" name="types" cols="1">
+                    <img src='img/types/roche.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="sol">
+                    <input type="radio" id="sol" name="types" cols="1">
+                    <img src='img/types/sol.png' height="16px">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="spectre">
+                    <input type="radio" id="spectre" name="types" cols="1">
+                    <img src='img/types/spectre.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="ténèbres">
+                    <input type="radio" id="ténèbres" name="types" cols="1">
+                    <img src='img/types/ténèbres.png' height="16px">
+                  </label>
+                </td>
+                <td>
+                  <label for="vol">
+                    <input type="radio" id="vol" name="types" cols="1">
+                    <img src='img/types/vol.png' height="16px">
+                  </label>
+                </td>
+              </tr>
+            </table>
+
+            <div class="center">
+              <button class="center" id="rechercher-type" onClick="searchType()">
+                <span class="icon-text">
+                  <span class="fa fa-search form-control-feedback">
+                    <i class="no-margin gg-search"></i>
+                  </span>
+                  <span>Rechercher par type</span>
+                </span>
+              </button>
+
+
+            </div>`
+
+        }
+      </script>
   </div>
 
   <div id="loader" class="loader"></div>
