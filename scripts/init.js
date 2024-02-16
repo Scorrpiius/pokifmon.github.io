@@ -80,6 +80,7 @@ function getSpriteUrl(id) {
 
 
 function createNavigationLinkHTML(id, direction) {
+
   const paddedId = id.toString().padStart(3, '0');
   const spriteUrl = getSpriteUrl(id);
   const directionIcons = {
@@ -87,29 +88,61 @@ function createNavigationLinkHTML(id, direction) {
     "droite": "img/icones/icone-fleche-droite-noir.png"
   };
 
-  if (direction == "gauche") {
-    return `
-    <a href="profil.html?id=${id}">
-      <img src="${directionIcons[direction]}" alt="Flèche ${direction}">
-    </a>
-    <a href="profil.html?id=${id}">
-      <p>Pokémon n°${paddedId}</p>
-    </a>
-    <a href="profil.html?id=${id}">
-      <img id="pixelized-sprite" src="${spriteUrl}" alt="Pokémon ${direction === "gauche" ? "précédent" : "suivant"}">
-    </a>`;
+  var w = window.innerHeight;
+  if(w > 600){
+    if (direction == "gauche") {
+      return `
+      <a href="profil.html?id=${id}">
+        <img src="${directionIcons[direction]}" alt="Flèche ${direction}">
+      </a>
+      <a href="profil.html?id=${id}">
+        <p>Pokémon n°${paddedId}</p>
+      </a>
+      <a href="profil.html?id=${id}">
+        <img id="pixelized-sprite" src="${spriteUrl}" alt="Pokémon ${direction === "gauche" ? "précédent" : "suivant"}">
+      </a>`;
+    } else {
+      return `
+      <a href="profil.html?id=${id}">
+        <img id="pixelized-sprite" src="${spriteUrl}" alt="Pokémon ${direction === "gauche" ? "précédent" : "suivant"}">
+      </a>
+      <a href="profil.html?id=${id}">
+        <p>Pokémon n°${paddedId}</p>
+      </a>
+      <a href="profil.html?id=${id}">
+        <img src="${directionIcons[direction]}" alt="Flèche ${direction}">
+      </a>`;
+    }
   } else {
-    return `
-    <a href="profil.html?id=${id}">
-      <img id="pixelized-sprite" src="${spriteUrl}" alt="Pokémon ${direction === "gauche" ? "précédent" : "suivant"}">
-    </a>
-    <a href="profil.html?id=${id}">
-      <p>Pokémon n°${paddedId}</p>
-    </a>
-    <a href="profil.html?id=${id}">
-      <img src="${directionIcons[direction]}" alt="Flèche ${direction}">
-    </a>`;
+    if (direction == "gauche") {
+      return `
+      <div id="phone-adapted-left">
+      <a href="profil.html?id=${id}">
+        <img src="${directionIcons[direction]}" alt="Flèche ${direction}">
+      </a>
+      <a href="profil.html?id=${id}">
+        <p>Pokémon n°${paddedId}</p>
+      </a>
+      </div>
+      <a href="profil.html?id=${id}">
+        <img id="pixelized-sprite" src="${spriteUrl}" alt="Pokémon ${direction === "gauche" ? "précédent" : "suivant"}">
+      </a>`;
+    } else {
+      return `<div id="phone-adapted-right">
+      <a href="profil.html?id=${id}">
+        <img id="pixelized-sprite" src="${spriteUrl}" alt="Pokémon ${direction === "gauche" ? "précédent" : "suivant"}">
+      </a>
+      <a href="profil.html?id=${id}">
+        <p>Pokémon n°${paddedId}</p>
+      </a></div>
+      <a href="profil.html?id=${id}">
+        <img src="${directionIcons[direction]}" alt="Flèche ${direction}">
+      </a>`;
+    }
+    
   }
+
+  
 
 
 }

@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="style/header.css">
   <link rel="stylesheet" href="style/pokecards.css">
   <link rel="stylesheet" href="style/autocompletion.css">
-  <link rel="stylesheet" href="style/profil.css">
   <link rel="stylesheet" href="style/gameDescription.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -30,6 +29,19 @@
   <script src="scripts/init.js"></script>
 
   <title>PokIFmon</title>
+  <style>
+    #en-tete {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Source Sans Pro';
+      font-size: 2.0em;
+      font-weight: 600;
+    }
+  </style>
 
 </head>
 
@@ -52,7 +64,7 @@
   <div id="loader" class="loader"></div>
 
   <div id="en-tete">
-    <div class=" no-shadow center">
+    <div class="card no-shadow">
       <div class="card-body">
         <h2 id="game-name" class="card-title skeleton"></h2>
       </div>

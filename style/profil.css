@@ -184,3 +184,33 @@ img#pixelized-sprite {
   height: 100px;
   width: 100px;
 }
+
+
+
+@media (max-width: 600px){
+
+  #left img {
+    margin-left: 0px;
+  }
+  
+  img#pixelized-sprite {
+    height: 10px;
+    width: 10px;
+  }
+
+  #phone-adapted-left {
+    display: flex;
+    align-items: center;
+  }
+
+  #phone-adapted-right {
+    display: flex;
+    align-items: center;
+  }
+
+  #left,
+  #right {
+  display: block;
+  align-items: center;
+}
+}

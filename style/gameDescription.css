@@ -8,8 +8,8 @@
 }
 
 #game-description {
-    grid-area: 2 / 3 / 6 / 4;
-    width: 600px;
+    grid-area: 1 / 3 / 6 / 4;
+    width: 100%;
     padding: 16px 16px;
     margin: 20px;
     justify-content: center;
@@ -21,7 +21,7 @@
 
 #general-infos{
     grid-area: 6 / 3 / 6 / 4;
-    width: 600px;
+    width: 100% ;
     padding: 16px 16px;
     margin: 20px;
     align-items: center;
